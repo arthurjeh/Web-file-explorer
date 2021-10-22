@@ -6,11 +6,21 @@
 </head>
 <body>
 
- 
+ <h2>Upload file</h2>
 <form action="/uploadfile" enctype="multipart/form-data" method="POST"> 
    <input type="file" name="myFile" />
-   <input type="submit" value="Upload a file"/>
+  <input type="submit" value="Upload a file"/>
+</form>
+<br>
+<br>
+
+<h2>Delete a file</h2>
+<form action="/delete" enctype="multipart/form-data" method="POST"> 
+  <input type="file" name="delete" />
+ <input type="submit" value="delete a file"/>
 </form>
 
-<img src="/uploads/myFile-1634645503936" />
+</form>
+
+
 </html>
