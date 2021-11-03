@@ -7,9 +7,9 @@
 <body>
 
  <h2>Upload file</h2>
-<form action="/uploadfile" enctype="multipart/form-data" method="POST"> 
+<form action="/uploadfile" enctype="multipart/form-data" method="POST">   <!--  uploadfile is called in my post funvtion in Uplomulter.js// multipart/form-data is use when the form input any input file  -->
    <input type="file" name="myFile" />
-  <input type="submit" value="Upload a file"/>
+  <input type="submit" value="Upload a file"/>    <!--the button submit-->
 </form>
 <br>
 <br>
@@ -22,9 +22,10 @@
 
 <br>
 <br>
+<h2>Rename a file</h2>
 <form action="/rename" method="post"> 
-  <p> <label for="name">to rename : :</p>
-  <input type="text" name="toRename" />
+  <p> <label for="name">to rename :</p>
+  <input type="text" name="toRename" />   <!-- is a text type and we can take this values with: req.body -->
   <p> <label for="name">rename to :</p>
   <input type="text" name="rename" />
  <input type="submit" value="rename the file"/>
