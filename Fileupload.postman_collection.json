@@ -85,6 +85,11 @@
 						"key": "rename",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "toRename",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -117,7 +122,13 @@
 			"name": "search",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "directory",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"directory\":\"file.json\"\n}",
