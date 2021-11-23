@@ -53,6 +53,7 @@
 					"formdata": [
 						{
 							"key": "files",
+							"contentType": "application/json",
 							"type": "file",
 							"src": "/home/arthur/Documents/info/MulterUpload/file.json"
 						}
@@ -79,7 +80,13 @@
 			"name": "rename",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "rename",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"rename\":\"fichier.json\",\n    \"toRename\":\"file2.json\"\n}",
@@ -101,6 +108,37 @@
 					"port": "8080",
 					"path": [
 						"rename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"directory\":\"file.json\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/directory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"directory"
 					]
 				}
 			},
