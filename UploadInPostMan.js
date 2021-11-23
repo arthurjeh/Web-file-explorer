@@ -6,9 +6,9 @@
 
 
 const express = require('express')    //express is use to create 
-const multer = require('multer');     //multer is a middleware for handling a form data and principally use to upload a file
+const multer = require('multer');     //multer is a middleware for handling a form data and principally use here to upload a file
 const fs=require('fs');               // fs is use to interact with a file
-const formidable = require('formidable'); //formdiable is use for parsingform data,especially file uploads
+const formidable = require('formidable'); //formdiable is use for parsingform data,especially file uploads. Here is use to delete the file and especially to have the name of the file
 const bodyParser = require('body-parser');  //Parse incoming request bodiesin a middleware before your handlers
 
 const app = express();
@@ -45,7 +45,7 @@ app.use(bodyParser.json())
   app.post('/uploadfile',upload.single('myFile'), async (req, res, next) => {       //upload to upload in particular directory
     const file = req.file           //recup the data of the file
     console.log(file)               //written the data 
-    console.log(file.originalname)  //written the name of the file
+    //console.log(file.originalname)  //written the name of the file
   
     //create a error when the files is not recognised
     if (!file) {
@@ -90,7 +90,8 @@ app.post('/delete', (req, res, next) => {
 //-----------------Part of the code to rename a file-----------
 //http://127.0.0.1:8080/rename
 
-  app.post("/rename",(req,res)=>{
+
+app.post("/rename",(req,res)=>{
     var rename=req.body.rename      //the variable rename take the request of my text form
     console.log(rename)
     var toRename=req.body.toRename    //ake the request of the other text form
@@ -100,6 +101,40 @@ app.post('/delete', (req, res, next) => {
     });
      res.send("the file: "+toRename+" is now "+rename)        
   })
+
+
+
+
+//-----------------Part to search the last modification of a file-----------
+//http://127.0.0.1:8080/directory
+
+
+  app.post("/directory",(req,res)=>{
+
+    dir=req.body.directory    //retrieves the name of the file
+    console.log(dir)
+  
+    //child porcess is use to see the file in all directory
+    const { spawn } = require('child_process');
+    const child = spawn('ls',['-la']);      //is like ls- la in console
+  
+    child.stdout.on('data', data => {               //stdout=flux       on=ecouteur
+      console.log(`stdout:\n${data}`);
+    const ar=(`${data}`)
+    
+  const find=ar.indexOf(dir)    //i have a a buffer
+  console.log(find)               //-1= don't find 
+  console.log(typeof(find))   //number
+  
+  const number=ar.substr(find-13,find/36)   // i delete the part that doesn't interest me (rights, name...=)
+  console.log(number)
+  res.send("the file : "+dir+" was modified on "+number)
+  });
+  
+  
+  })
+
+
 
 
 
